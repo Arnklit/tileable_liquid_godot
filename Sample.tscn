@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/test2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/tileable_liquid_manager.gd" type="Script" id=2]
@@ -16,27 +16,34 @@ _data = [ Vector2( 0, 0.979532 ), 0.0, 0.0, 0, 0, Vector2( 0.990909, 0.365497 ),
 width = 128
 curve = SubResource( 2 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
+[sub_resource type="CurveTexture" id=5]
 width = 64
-curve = SubResource( 5 )
+curve = SubResource( 4 )
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+width = 64
+curve = SubResource( 6 )
+
+[sub_resource type="Gradient" id=8]
 colors = PoolColorArray( 0, 0.972656, 0.94986, 1, 0.0546875, 1, 0, 1 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=10]
 _data = [ Vector2( 0.619469, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 6.29204, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
+[sub_resource type="CurveTexture" id=11]
 width = 64
-curve = SubResource( 9 )
+curve = SubResource( 10 )
 
-[sub_resource type="MultiMesh" id=4]
+[sub_resource type="MultiMesh" id=12]
 color_format = 2
 transform_format = 1
 instance_count = 3
@@ -52,19 +59,21 @@ script = ExtResource( 2 )
 mesh = ExtResource( 1 )
 mesh_repeat = 3
 curve_samples = 100
-param_speed = 1.78
+param_speed = 2.0
 param_thickness = 2.122
 param_max_rotation = 6.0
+param_grow_factor = 0.606
 param_transmission_color = Color( 0.92549, 0.945098, 0.360784, 1 )
 param_use_fake_ss = true
 param_fake_ss_sharpness = 2.0
 param_thickness_curve = SubResource( 3 )
-param_rotation_over_curve = SubResource( 6 )
-param_gradient = SubResource( 8 )
-param_emission_intensity_rim = SubResource( 10 )
+param_rotation_over_curve = SubResource( 5 )
+param_grow_over_length = SubResource( 7 )
+param_gradient = SubResource( 9 )
+param_emission_intensity_rim = SubResource( 11 )
 
 [node name="MultiMeshInstance" type="MultiMeshInstance" parent="Path"]
-multimesh = SubResource( 4 )
+multimesh = SubResource( 12 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.413552, 0, 0 )

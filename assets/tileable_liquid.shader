@@ -12,6 +12,8 @@ uniform float thickness : hint_range(0.0, 10.0) = 1.0;
 uniform sampler2D thickness_curve : hint_white;
 uniform float max_rotation = 6.0;
 uniform sampler2D rotation_over_curve;
+uniform sampler2D grow_over_length;
+uniform float grow_factor = -0.1;
 
 // Shading uniforms
 uniform sampler2D gradient;
@@ -45,6 +47,7 @@ void vertex() {
 	mat4 rot = rot_y(max_rotation
 			* texture(rotation_over_curve, vec2(scaled_uv_y)).r
 		);
+	VERTEX += NORMAL * grow_factor * texture(grow_over_length, vec2(scaled_uv_y)).r;
 	VERTEX = (rot * vec4(VERTEX, 1.0)).rgb;
 	NORMAL = (rot * vec4(NORMAL, 0.0)).rgb;
 	VERTEX *= thickness * thick_curve;
