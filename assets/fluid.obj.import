@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/fluid.obj-967026d08acb4155d2a382b3f44ff795.mesh"
+
+[deps]
+
+files=[ "res://.import/fluid.obj-967026d08acb4155d2a382b3f44ff795.mesh" ]
+
+source_file="res://assets/fluid.obj"
+dest_files=[ "res://.import/fluid.obj-967026d08acb4155d2a382b3f44ff795.mesh", "res://.import/fluid.obj-967026d08acb4155d2a382b3f44ff795.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
