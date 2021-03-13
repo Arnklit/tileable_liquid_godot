@@ -4,8 +4,8 @@ extends Path
 const SHADER_PATH = "res://assets/tileable_liquid.shader"
 
 export var mesh : Mesh setget set_mesh
-export var mesh_repeat := 1 setget set_mesh_repeat
-export var curve_samples := 50
+export(int, 1, 20) var mesh_repeat := 1 setget set_mesh_repeat
+export(int, 16, 1024) var curve_samples := 50
 
 # Private vars
 var _mat : ShaderMaterial
