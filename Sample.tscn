@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/test2.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/tileable_liquid_manager.gd" type="Script" id=2]
+
+[sub_resource type="Curve3D" id=5]
+_data = {
+"points": PoolVector3Array( 3.66724, -0.0716667, -0.225666, -3.66724, 0.0716667, 0.225666, 20.677, 14.9636, 0.879517, 2.45223, 0.581665, -0.0328197, -2.45223, -0.581665, 0.0328197, 12.218, 14.9376, 0.809624, 1.54001, 2.48527, 0.479729, -1.54001, -2.48527, -0.479729, 2.56488, 7.77554, 1.06734, 0.208381, 2.5695, 0.523871, -0.208381, -2.5695, -0.523871, -0.155198, -6.02154, -1.13378 ),
+"tilts": PoolRealArray( 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.979532 ), 0.0, 0.0, 0, 0, Vector2( 0.990909, 0.365497 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+width = 128
+curve = SubResource( 2 )
+
+[sub_resource type="MultiMesh" id=6]
+color_format = 2
+transform_format = 1
+instance_count = 6
+mesh = ExtResource( 1 )
+transform_array = PoolVector3Array( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+color_array = PoolColorArray( 0, 0, 0, 1, 0.142857, 0, 0, 1, 0.285714, 0, 0, 1, 0.428571, 0, 0, 1, 0.571429, 0, 0, 1, 0.714286, 0, 0, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Path" type="Path" parent="."]
+curve = SubResource( 5 )
+script = ExtResource( 2 )
+mesh = ExtResource( 1 )
+mesh_repeat = 6
+curve_samples = 100
+param_speed = 1.408
+param_thickness = 2.122
+param_thickness_curve = SubResource( 4 )
+
+[node name="MultiMeshInstance" type="MultiMeshInstance" parent="Path"]
+multimesh = SubResource( 6 )
