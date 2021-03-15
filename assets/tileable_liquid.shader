@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode diffuse_burley, specular_schlick_ggx;
 
 // Uniforms set by script
 uniform vec3 i_bb_start;
@@ -47,7 +48,6 @@ void vertex() {
 	mat4 rot = rot_y(max_rotation
 			* texture(rotation_over_curve, vec2(scaled_uv_y)).r
 		);
-	VERTEX += NORMAL * grow_factor * texture(grow_over_length, vec2(scaled_uv_y)).r;
 	VERTEX = (rot * vec4(VERTEX, 1.0)).rgb;
 	NORMAL = (rot * vec4(NORMAL, 0.0)).rgb;
 	VERTEX *= thickness * thick_curve;
@@ -56,6 +56,7 @@ void vertex() {
 	VERTEX += i_bb_start;
 	NORMAL = (curve_matrix * vec4(NORMAL, 0.0)).xyz;
 	TANGENT = (curve_matrix * vec4(TANGENT, 0.0)).xyz;
+	VERTEX += NORMAL * grow_factor * texture(grow_over_length, vec2(scaled_uv_y)).r;
 }
 
 void fragment() {
@@ -64,7 +65,7 @@ void fragment() {
 		discard;
 	}
 	
-	ROUGHNESS = 0.0;
+	ROUGHNESS = 0.2;
 	float fresnel = abs(dot(normalize(NORMAL), normalize(VERTEX)));
 	vec4 color = texture(gradient, vec2(fresnel));
 	ALBEDO = color.rgb;
